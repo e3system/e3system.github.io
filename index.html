@@ -27,7 +27,7 @@
             max-width: var(--content-width);
             margin: 0 auto;
             padding: clamp(30px, 4vw, 64px) clamp(28px, 7vw, 96px);
-            font-size: clamp(15px, 0.35vw + 13px, 18px);
+            font-size: clamp(14px, 0.25vw + 13px, 17px);
         }
         header {
             text-align: center;
@@ -35,13 +35,15 @@
         }
         h1 {
             color: var(--primary-color);
-            font-size: clamp(1.25rem, 1.1vw + 0.95rem, 2.05rem);
-            line-height: 1.25;
+            font-size: clamp(1.05rem, 1.35vw + 0.7rem, 1.72rem);
+            line-height: 1.32;
             margin-bottom: 12px;
             letter-spacing: 0.01em;
-            white-space: nowrap;
+            white-space: normal;
             max-width: 100%;
+            word-break: break-word;
             overflow-wrap: anywhere;
+            text-wrap: balance;
         }
         .authors {
             font-size: clamp(1rem, 0.8vw + 0.8rem, 1.25rem);
@@ -151,8 +153,7 @@
                 padding: 24px 18px;
             }
             h1 {
-                white-space: normal;
-                font-size: clamp(1.1rem, 4.2vw, 1.5rem);
+                font-size: clamp(1rem, 3.8vw, 1.35rem);
             }
             section {
                 padding: 18px 14px;
