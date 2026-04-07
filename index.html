@@ -35,11 +35,13 @@
         }
         h1 {
             color: var(--primary-color);
-            font-size: clamp(1.6rem, 2.1vw + 1rem, 2.85rem);
+            font-size: clamp(1.25rem, 1.1vw + 0.95rem, 2.05rem);
             line-height: 1.25;
             margin-bottom: 12px;
             letter-spacing: 0.01em;
             white-space: nowrap;
+            max-width: 100%;
+            overflow-wrap: anywhere;
         }
         .authors {
             font-size: clamp(1rem, 0.8vw + 0.8rem, 1.25rem);
@@ -150,6 +152,7 @@
             }
             h1 {
                 white-space: normal;
+                font-size: clamp(1.1rem, 4.2vw, 1.5rem);
             }
             section {
                 padding: 18px 14px;
