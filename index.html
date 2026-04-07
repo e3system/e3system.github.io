@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E3-System: Expressive EmoData, Explicitly Controllable, Easy-to-Use TTS</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --highlight-color: #e74c3c;
+            --bg-color: #fcfcfc;
+            --table-border: #e2e8f0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--bg-color);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .authors {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        .conference {
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+        .figure-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .figure-caption {
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 15px;
+            text-align: left;
+            padding: 0 20px;
+        }
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--table-border);
+            vertical-align: middle;
+        }
+        th {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f8fafc;
+        }
+        audio {
+            width: 100%;
+            max-width: 260px;
+            height: 40px;
+        }
+        .text-content {
+            font-style: italic;
+            color: #555;
+            max-width: 300px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #eef2f5;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>E3-System: Expressive EmoData, Explicitly Controllable, Easy-to-Use TTS</h1>
+        <div class="authors">Anonymous Interspeech submission</div>
+    </header>
+
+    <section id="abstract">
+        <h2>Abstract</h2>
+        <p>Recent TTS technology continues to advance, but user demand has raised higher standards for system-level practicality. Existing methods face challenges in balancing expressiveness, controllability, and usability. We propose <strong>E3-System</strong>, a framework that systematically addresses these challenges.</p>
+        <p>Our system introduces <strong>EmoData</strong>, the first thousand-hour multilingual and expressive emotional speech dataset built through a fully automated pipeline. We also propose <strong>Dual-TTS</strong>, a dual-prompt model trained with a novel strategy that disentangles timbre and style, enabling arbitrary "timbre × style" combinations. Supported by a Style-RAG module, our system significantly reduces user effort while achieving state-of-the-art results in naturalness and style consistency.</p>
+    </section>
+
+    <section id="dataset">
+        <h2>1. Expressive EmoData Pipeline</h2>
+        <div class="figure-container">
+            <img src="assets/images/emodata_pipeline.png" alt="EmoData Dataset Pipeline">
+            <div class="figure-caption">
+                <strong>Figure 1: Automated Data Construction Pipeline.</strong> To support expressive and multilingual TTS, we construct EmoData, the first thousand-hour multilingual dataset of highly expressive emotional speech. It is constructed via a fully automated and scalable pipeline, covering six emotions. The raw wild speech data undergoes standardization, Voice Activity Detection (VAD) & Source Separation, and Speaker Separation. For emotion labeling, we introduce a confidence-aware ensemble mechanism (Confidence Fusion) to filter samples, ensuring high quality and explicit alignment between semantics and acoustic prosody.
+            </div>
+        </div>
+    </section>
+
+    <section id="model">
+        <h2>2. Explicitly Controllable Dual-TTS Architecture</h2>
+        <div class="figure-container">
+            <img src="assets/images/model_architecture.png" alt="E3-System Model Architecture">
+            <div class="figure-caption">
+                <strong>Figure 2: The E3-System Model Architecture.</strong> The framework covers two core modules: Text-to-Semantic and Semantic-to-Acoustic. The Text-to-Semantic generation utilizes a <strong>Dual-AR LLM</strong> (Sequential Contextual LLM and Fast Detailed LLM) to process text tokens conditionally with disentangled style and speaker features. A <strong>Style-RAG</strong> module automatically selects matching style prompts based on captions. The Semantic-to-Acoustic generation employs a <strong>Mask-based Diffusion LLM</strong>. The model is trained via an innovative VC-based data-driven paradigm to strictly avoid timbre, style, and content leakage.
+            </div>
+        </div>
+    </section>
+
+    <section id="demos">
+        <h2>3. Audio Samples</h2>
+
+        <h3>3.1 EmoData Dataset Showcases</h3>
+        <p>Samples showcasing the highly expressive, wild emotional speech mined through our automated pipeline.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Speech</th>
+                    <th>Text</th>
+                    <th>Emotion Label</th>
+                    <th>Speaker</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><audio controls preload="none"><source src="assets/audio/dataset/sample1.wav" type="audio/wav"></audio></td>
+                    <td class="text-content">"I simply cannot believe you did that without asking me!"</td>
+                    <td><span class="badge">Angry</span></td>
+                    <td>Spk_001</td>
+                </tr>
+                </tbody>
+        </table>
+
+        <h3>3.2 Zero-Shot Synthesis (Single Prompt)</h3>
+        <p>In this scenario, both timbre and style are conditioned on the same reference speaker prompt.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Speaker Prompt</th>
+                    <th>Prompt Text</th>
+                    <th>Synthesized Speech</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><audio controls preload="none"><source src="assets/audio/model/ref_spk1.wav" type="audio/wav"></audio></td>
+                    <td class="text-content">"The weather today is absolutely beautiful."</td>
+                    <td><audio controls><source src="assets/audio/model/synth_zero1.wav" type="audio/wav"></audio></td>
+                </tr>
+                </tbody>
+        </table>
+
+        <h3>3.3 Disentangled Synthesis (Dual-Prompt)</h3>
+        <p>Demonstrating arbitrary "Timbre × Style" combinations. The model independently extracts the identity from the Speaker Prompt and the emotional prosody from the Emotion Prompt without leakage.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Speaker Prompt (Timbre)</th>
+                    <th>Emotion Prompt (Style)</th>
+                    <th>Prompt Text</th>
+                    <th>Synthesized Speech</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <audio controls preload="none"><source src="assets/audio/model/timbre_ref.wav" type="audio/wav"></audio>
+                        <br><span style="font-size: 0.8rem; color: #7f8c8d;">Neutral Voice</span>
+                    </td>
+                    <td>
+                        <audio controls preload="none"><source src="assets/audio/model/style_ref_sad.wav" type="audio/wav"></audio>
+                        <br><span style="font-size: 0.8rem; color: #7f8c8d;">Target Style: Sad</span>
+                    </td>
+                    <td class="text-content">"I've been waiting here for hours, but nobody came."</td>
+                    <td><audio controls preload="none"><source src="assets/audio/model/synth_dual1.wav" type="audio/wav"></audio></td>
+                </tr>
+                </tbody>
+        </table>
+    </section>
+
+</body>
+</html>
