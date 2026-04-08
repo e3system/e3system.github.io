@@ -1,0 +1,11 @@
+language,emotion,path,transcript,source_dataset,source_ref,sample_rate
+zh,happy,assets/audio/curated/zh/zh_happy.wav,太棒了以后我要经常来这爬山,yukat237/emotional-speech-audio-dataset-3eng-4noneng-updated (ESD split),0001_000888.wav,44100
+zh,sad,assets/audio/curated/zh/zh_sad.wav,我真想问 我追于有自己的停愿了,yukat237/emotional-speech-audio-dataset-3eng-4noneng-updated (ESD split),0001_001328.wav,44100
+ja,happy,assets/audio/curated/ja/ja_happy.wav,昨日の受証式で私の友達が最有収重重証を受証したんだ!,yukat237/emotional-speech-audio-dataset-3eng-4noneng-updated (JVNV split; per request JKNV),japanese_happy__F2_happy_regular_02__cut_intscaled.wav,44100
+ja,sad,assets/audio/curated/ja/ja_sad.wav,いや、まみちを歩いていたら、楽石に総具してしまって…お気が押してしまった…,yukat237/emotional-speech-audio-dataset-3eng-4noneng-updated (JVNV split; per request JKNV),japanese_sad__M1_sad_regular_08__cut_intscaled.wav,44100
+ja,angry,assets/audio/curated/ja/ja_angry.wav,こんな仕事は、割に合わないって言ってたくせに、急流のことで、もうこういうな!,yukat237/emotional-speech-audio-dataset-3eng-4noneng-updated (JVNV split; per request JKNV),japanese_angry__M1_anger_regular_24__cut_intscaled.wav,44100
+en,happy,assets/audio/curated/en/en_happy.wav,"Oh, I love it.",amphion/Emilia-Dataset (EN shard stream),EN_k3WkagJ3mUg_W000092.mp3,44100
+en,sad,assets/audio/curated/en/en_sad.wav,"Unfortunately for you guys, mine decides to do what it wants to do when it wants to do it.",amphion/Emilia-Dataset (EN shard stream),EN_k3WkagJ3mUg_W000127.mp3,44100
+en,angry,assets/audio/curated/en/en_angry.wav,"Garon, damn to ya.",amphion/Emilia-Dataset (EN shard stream),EN_k3WkagJ3mUg_W000119.mp3,44100
+en,fear,assets/audio/curated/en/en_fear.wav,"But which is fear, uncertainty, and doubt, and FOMO, the fear of missing out, uh, when a new product appears.",amphion/Emilia-Dataset (EN shard stream),EN_k40d6KK_bX0_W000113.mp3,44100
+en,neutral,assets/audio/curated/en/en_neutral.wav,It was exactly the fuck-up shot I thought it was.,amphion/Emilia-Dataset (EN shard stream),EN_k3WkagJ3mUg_W000062.mp3,44100

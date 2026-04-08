@@ -148,51 +148,6 @@
             font-weight: 600;
             color: var(--primary-color);
         }
-        .maintenance-card {
-            margin-top: 18px;
-            padding: 22px 18px;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            background: #fff;
-            box-shadow: var(--shadow-soft);
-            color: #475569;
-        }
-        .maintenance-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            color: #334155;
-            font-weight: 600;
-        }
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: #f59e0b;
-        }
-        .maintenance-detail {
-            font-size: 0.9rem;
-            color: #64748b;
-            margin: 2px 0 0;
-        }
-        .countdown {
-            margin-top: 12px;
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: 8px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            color: #0f172a;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-            font-size: 0.92rem;
-        }
-        .maintenance-note {
-            margin-top: 10px;
-            font-size: 0.84rem;
-            color: #94a3b8;
-        }
         @media (max-width: 900px) {
             body {
                 padding: 24px 18px;
@@ -241,49 +196,74 @@
 
     <section id="demos">
         <h2>3. Audio Samples</h2>
-        <div class="maintenance-card" id="audio-maintenance-card">
-            <div class="maintenance-title">
-                <span class="dot" aria-hidden="true"></span>
-                <span>Audio sample module is temporarily unavailable</span>
-            </div>
-            <p class="maintenance-detail">A scheduled backend update is in progress (rolling 72-hour window).</p>
-            <p class="maintenance-detail">Core page contents (text and figures) remain accessible during this period.</p>
-            <div class="countdown" id="audio-countdown">Estimated restoration in: --:--:--</div>
-            <p class="maintenance-note" id="audio-deadline-note">Target restore time (UTC): --</p>
-        </div>
+
+        <h3>3.1 EmoData Dataset Showcases</h3>
+        <p>Samples showcasing the highly expressive, wild emotional speech mined through our automated pipeline.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Speech</th>
+                    <th>Text</th>
+                    <th>Emotion Label</th>
+                    <th>Speaker</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><audio controls preload="none"><source src="assets/audio/dataset/sample1.wav" type="audio/wav"></audio></td>
+                    <td class="text-content">"I simply cannot believe you did that without asking me!"</td>
+                    <td><span class="badge">Angry</span></td>
+                    <td>Spk_001</td>
+                </tr>
+                </tbody>
+        </table>
+
+        <h3>3.2 Zero-Shot Synthesis (Single Prompt)</h3>
+        <p>In this scenario, both timbre and style are conditioned on the same reference speaker prompt.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Speaker Prompt</th>
+                    <th>Prompt Text</th>
+                    <th>Synthesized Speech</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><audio controls preload="none"><source src="assets/audio/model/ref_spk1.wav" type="audio/wav"></audio></td>
+                    <td class="text-content">"The weather today is absolutely beautiful."</td>
+                    <td><audio controls><source src="assets/audio/model/synth_zero1.wav" type="audio/wav"></audio></td>
+                </tr>
+                </tbody>
+        </table>
+
+        <h3>3.3 Disentangled Synthesis (Dual-Prompt)</h3>
+        <p>Demonstrating arbitrary "Timbre × Style" combinations. The model independently extracts the identity from the Speaker Prompt and the emotional prosody from the Emotion Prompt without leakage.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Speaker Prompt (Timbre)</th>
+                    <th>Emotion Prompt (Style)</th>
+                    <th>Prompt Text</th>
+                    <th>Synthesized Speech</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <audio controls preload="none"><source src="assets/audio/model/timbre_ref.wav" type="audio/wav"></audio>
+                        <br><span style="font-size: 0.8rem; color: #7f8c8d;">Neutral Voice</span>
+                    </td>
+                    <td>
+                        <audio controls preload="none"><source src="assets/audio/model/style_ref_sad.wav" type="audio/wav"></audio>
+                        <br><span style="font-size: 0.8rem; color: #7f8c8d;">Target Style: Sad</span>
+                    </td>
+                    <td class="text-content">"I've been waiting here for hours, but nobody came."</td>
+                    <td><audio controls preload="none"><source src="assets/audio/model/synth_dual1.wav" type="audio/wav"></audio></td>
+                </tr>
+                </tbody>
+        </table>
     </section>
-
-    <script>
-        const MAINTENANCE_END_UTC = "2026-04-10T16:00:00Z";
-
-        function formatRemain(ms) {
-            const total = Math.floor(ms / 1000);
-            const days = Math.floor(total / 86400);
-            const hours = Math.floor((total % 86400) / 3600);
-            const mins = Math.floor((total % 3600) / 60);
-            const secs = total % 60;
-            return `${String(days).padStart(2, "0")}d ${String(hours).padStart(2, "0")}h ${String(mins).padStart(2, "0")}m ${String(secs).padStart(2, "0")}s`;
-        }
-
-        function tickCountdown() {
-            const end = new Date(MAINTENANCE_END_UTC).getTime();
-            const now = Date.now();
-            const remain = end - now;
-            const box = document.getElementById("audio-countdown");
-            const note = document.getElementById("audio-deadline-note");
-            if (!box || !note) return;
-
-            note.textContent = `Target restore time (UTC): ${new Date(end).toUTCString()}`;
-            if (remain > 0) {
-                box.textContent = `Estimated restoration in: ${formatRemain(remain)}`;
-            } else {
-                box.textContent = "Maintenance window ended. Samples may reappear after next deployment sync.";
-            }
-        }
-
-        tickCountdown();
-        window.setInterval(tickCountdown, 1000);
-    </script>
 
 </body>
 </html>
